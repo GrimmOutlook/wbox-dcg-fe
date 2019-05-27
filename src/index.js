@@ -57,7 +57,7 @@ class App extends React.Component {
 
 	handleDefaultSorting = sort => {
 		// sort the productsAll and / or productsFiltered if selected.  How to determine if a productsFiltered is selected???????????  Look at phantasytour filters controls.
-	}
+	};
 
 	render() {
 		const { productsAll } = this.state;

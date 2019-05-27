@@ -9,31 +9,27 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const APP_DIR = path.resolve(__dirname, '../src');
 
 module.exports = env => {
-    const { PLATFORM, VERSION } = env;
-    return merge([
-        {
-            entry: ['@babel/polyfill', APP_DIR],
-            // a module can have multiple rules - each rule is applied to a certain file type:
-            module: {
-                rules: [
-                    {
-                        test: /\.js$/,
-                        exclude: /node_modules/,
-                        use: {
-                        loader: 'babel-loader'
-                        }
-                    },
-                    {
-                        test: /\.(css|scss|sass)$/,
-                        use: [
-                        PLATFORM === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-                        'css-loader',
-                        'sass-loader'
-                        ]
+	const { PLATFORM, VERSION } = env;
+	return merge([
+		{
+			entry: ['@babel/polyfill', APP_DIR],
+			// a module can have multiple rules - each rule is applied to a certain file type:
+			module: {
+				rules: [
+					{
+						test: /\.js$/,
+						exclude: /node_modules/,
+						use: {
+							loader: 'babel-loader',
+						},
+					},
+					{
+						test: /\.(css|scss|sass)$/,
+						use: [PLATFORM === 'production' ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
 					},
 					{
 						test: /\.svg$/,
-						loader: 'svg-inline-loader'
+						loader: 'svg-inline-loader',
 					},
 					{
 						test: /\.(png|jpg|gif)$/i,
@@ -46,25 +42,23 @@ module.exports = env => {
 							},
 						],
 					},
-                    {
-                        test: /\.(woff|woff2|eot|ttf|otf)$/,
-                        use: [
-                            'file-loader'
-                        ]
-                    }
-                ]
-            },
-            plugins: [
-                new HtmlWebpackPlugin({
-                    template: './src/index.html',
-                    filename: './index.html'
-                }),
-                new webpack.DefinePlugin({
-                    'process.env.VERSION': JSON.stringify(env.VERSION),
-                    'process.env.PLATFORM': JSON.stringify(env.PLATFORM)
-                }),
-                new CopyWebpackPlugin([ { from: 'src/static' } ]),
-            ],
-        }
-    ])
+					{
+						test: /\.(woff|woff2|eot|ttf|otf)$/,
+						use: ['file-loader'],
+					},
+				],
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					template: './src/index.html',
+					filename: './index.html',
+				}),
+				new webpack.DefinePlugin({
+					'process.env.VERSION': JSON.stringify(env.VERSION),
+					'process.env.PLATFORM': JSON.stringify(env.PLATFORM),
+				}),
+				new CopyWebpackPlugin([{ from: 'src/static' }]),
+			],
+		},
+	]);
 };
