@@ -26,6 +26,7 @@ class App extends React.Component {
 	state = {
 		productsAll: [],
 		productsFiltered: [],
+		productsDisplayed: [],
 	};
 
 	componentDidMount() {
@@ -42,7 +43,7 @@ class App extends React.Component {
 			});
 			const resultJSON = await result.json();
 
-			this.setState({ productsAll: resultJSON });
+			this.setState({ productsAll: resultJSON, productsDisplayed: resultJSON });
 		} catch (error) {
 			console.log('error', error);
 		}
@@ -55,12 +56,22 @@ class App extends React.Component {
 		console.log('handlePriceDropdown clicked - e.target.value: ', e.target.value);
 	};
 
-	handleDefaultSorting = sort => {
-		// sort the productsAll and / or productsFiltered if selected.  How to determine if a productsFiltered is selected???????????  Look at phantasytour filters controls.
+	handleDefaultSorting = e => {
+		const sortOrder = e.target.value;
+		const { productsAll } = this.state;
+		if (sortOrder === 'lth') {
+			const productsSorted = Object.assign([], productsAll).sort((a, b) => a.price - b.price);
+			this.setState({ productsDisplayed: productsSorted });
+		} else if (sortOrder === 'htl') {
+			const productsSorted = Object.assign([], productsAll).sort((a, b) => b.price - a.price);
+			this.setState({ productsDisplayed: productsSorted });
+		} else {
+			this.setState({ productsDisplayed: productsAll });
+		}
 	};
 
 	render() {
-		const { productsAll } = this.state;
+		const { productsAll, productsDisplayed } = this.state;
 		return (
 			<>
 				<header className="header1">
@@ -524,11 +535,11 @@ class App extends React.Component {
 								<div className="flex-sb-m flex-w p-b-35">
 									<div className="flex-w">
 										<div className="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-											<select className="selection-2" name="sorting">
-												<option>Default Sorting</option>
-												<option>Popularity</option>
-												<option>Price: low to high</option>
-												<option>Price: high to low</option>
+											<select className="selection-2" name="sorting" onChange={this.handleDefaultSorting}>
+												<option value="default">Default Sorting</option>
+												{/* <option>Popularity</option> */}
+												<option value="lth">Price: low to high</option>
+												<option value="htl">Price: high to low</option>
 											</select>
 										</div>
 
@@ -549,7 +560,7 @@ class App extends React.Component {
 
 								{/* <!-- Product --> */}
 								<div className="row">
-									{productsAll.map(product => (
+									{productsDisplayed.map(product => (
 										<div className="col-sm-12 col-md-6 col-lg-4 p-b-50" key={product._id}>
 											{/* <!-- Block2 --> */}
 											<div className="block2">
