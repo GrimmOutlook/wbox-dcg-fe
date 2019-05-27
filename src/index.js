@@ -49,11 +49,19 @@ class App extends React.Component {
 		}
 	};
 
-	handlePriceDropdown = e => {
-		// Add $50 to price to determine range.  $200 + conditional???????
-		// filter productsAll by price range
-		// setState to productsFiltered or just use productsAll?
-		console.log('handlePriceDropdown clicked - e.target.value: ', e.target.value);
+	handlePriceSorting = e => {
+		const { productsAll } = this.state;
+		if (e.target.value === 'Price') {
+			this.setState({ productsDisplayed: productsAll });
+		} else {
+			const priceRange = e.target.value.split('-');
+
+			const productsFiltered = productsAll.filter(
+				product => parseFloat(product.price) >= priceRange[0] && parseFloat(product.price) <= priceRange[1],
+			);
+
+			this.setState({ productsDisplayed: productsFiltered });
+		}
 	};
 
 	handleDefaultSorting = e => {
@@ -447,7 +455,7 @@ class App extends React.Component {
 
 										<li className="p-t-4">
 											<a href="#" className="s-text13">
-												Accesories
+												Accessories
 											</a>
 										</li>
 									</ul>
@@ -544,13 +552,13 @@ class App extends React.Component {
 										</div>
 
 										<div className="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-											<select className="selection-2" name="sorting" onChange={this.handlePriceDropdown}>
+											<select className="selection-2" name="sorting" onChange={this.handlePriceSorting}>
 												<option>Price</option>
-												<option value={0}>$0.00 - $50.00</option>
-												<option value={50}>$50.00 - $100.00</option>
-												<option value={100}>$100.00 - $150.00</option>
-												<option value={150}>$150.00 - $200.00</option>
-												<option value={200}>$200.00+</option>
+												<option value="0-50">$0.00 - $50.00</option>
+												<option value="50-100">$50.00 - $100.00</option>
+												<option value="100-150">$100.00 - $150.00</option>
+												<option value="150-200">$150.00 - $200.00</option>
+												<option value="200-10000">$200.00+</option>
 											</select>
 										</div>
 									</div>
