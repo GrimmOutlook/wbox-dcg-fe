@@ -24,13 +24,28 @@ module.exports = env => {
                         }
                     },
                     {
-                        test: /\.scss$/,
+                        test: /\.(css|scss|sass)$/,
                         use: [
                         PLATFORM === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
                         'css-loader',
                         'sass-loader'
                         ]
-                    },
+					},
+					{
+						test: /\.svg$/,
+						loader: 'svg-inline-loader'
+					},
+					{
+						test: /\.(png|jpg|gif)$/i,
+						use: [
+							{
+								loader: 'url-loader',
+								options: {
+									limit: 8192,
+								},
+							},
+						],
+					},
                     {
                         test: /\.(woff|woff2|eot|ttf|otf)$/,
                         use: [

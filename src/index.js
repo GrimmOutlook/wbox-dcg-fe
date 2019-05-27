@@ -1,14 +1,31 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import css from './mystyles.scss';
+import './css/main.css';
+import './css/util.css';
+import './vendor/bootstrap/css/bootstrap.min.css';
+// import './images/icons/icon-header-01.png';
+import './fonts/font-awesome-4.7.0/css/font-awesome.min.css';
+import './fonts/themify/themify-icons.css';
+import './fonts/Linearicons-Free-v1.0.0/icon-font.min.css';
+import './fonts/elegant-font/html-css/style.css';
+import './vendor/animate/animate.css';
+import './vendor/css-hamburgers/hamburgers.min.css';
+import './vendor/animsition/css/animsition.min.css';
+import './vendor/select2/select2.min.css';
+import './vendor/slick/slick.css';
+import './vendor/noui/nouislider.min.css';
+
+import logo from './images/icons/logo.png';
 
 class App extends React.Component {
 	state = {
 		productsAll: [],
+		productsFiltered: [],
 	};
 
 	componentDidMount() {
@@ -31,22 +48,22 @@ class App extends React.Component {
 		}
 	};
 
+	handlePriceDropdown = e => {
+		// Add $50 to price to determine range.  $200 + conditional???????
+		// filter productsAll by price range
+		// setState to productsFiltered or just use productsAll?
+		console.log('handlePriceDropdown clicked - e.target.value: ', e.target.value);
+	};
+
+	handleDefaultSorting = sort => {
+		// sort the productsAll and / or productsFiltered if selected.  How to determine if a productsFiltered is selected???????????  Look at phantasytour filters controls.
+	}
+
 	render() {
 		const { productsAll } = this.state;
 		return (
 			<>
 				<header className="header1">
-					<div>
-						{productsAll.map(product => (
-							<ul>
-								<li style={{ fontSize: '24px' }}>{product.name}</li>
-								<li style={{ fontSize: '16px' }}>{product.price}</li>
-								<li style={{ height: '50px' }}>
-									<img src={product.image} />
-								</li>
-							</ul>
-						))}
-					</div>
 					{/* <!-- Header desktop --> */}
 					<div className="container-menu-header">
 						<div className="topbar">
@@ -75,7 +92,8 @@ class App extends React.Component {
 						<div className="wrap_header">
 							{/* <!-- Logo --> */}
 							<a href="index.html" className="logo">
-								<img src="images/icons/logo.png" alt="IMG-LOGO" />
+								<img src="./images/icons/logo.png" alt="IMG-LOGO" />
+								{/* <img src={logo} alt="IMG-LOGO" /> */}
 							</a>
 
 							{/* <!-- Menu --> */}
@@ -127,13 +145,13 @@ class App extends React.Component {
 							{/* <!-- Header Icon --> */}
 							<div className="header-icons">
 								<a href="#" className="header-wrapicon1 dis-block">
-									<img src="images/icons/icon-header-01.png" className="header-icon1" alt="ICON" />
+									<img src="./images/icons/icon-header-01.png" className="header-icon1" alt="ICON" />
 								</a>
 
 								<span className="linedivide1" />
 
 								<div className="header-wrapicon2">
-									<img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" />
+									<img src="./images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" />
 									<span className="header-icons-noti">0</span>
 
 									{/* <!-- Header cart noti --> */}
@@ -141,7 +159,7 @@ class App extends React.Component {
 										<ul className="header-cart-wrapitem">
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="images/item-cart-01.jpg" alt="IMG" />
+													<img src="./images/item-cart-01.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -155,7 +173,7 @@ class App extends React.Component {
 
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="images/item-cart-02.jpg" alt="IMG" />
+													<img src="./images/item-cart-02.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -169,7 +187,7 @@ class App extends React.Component {
 
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="images/item-cart-03.jpg" alt="IMG" />
+													<img src="./images/item-cart-03.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -209,7 +227,7 @@ class App extends React.Component {
 					<div className="wrap_header_mobile">
 						{/* <!-- Logo moblie --> */}
 						<a href="index.html" className="logo-mobile">
-							<img src="images/icons/logo.png" alt="IMG-LOGO" />
+							<img src="./images/icons/logo.png" alt="IMG-LOGO" />
 						</a>
 
 						{/* <!-- Button show menu --> */}
@@ -217,13 +235,13 @@ class App extends React.Component {
 							{/* <!-- Header Icon mobile --> */}
 							<div className="header-icons-mobile">
 								<a href="#" className="header-wrapicon1 dis-block">
-									<img src="images/icons/icon-header-01.png" className="header-icon1" alt="ICON" />
+									<img src="./images/icons/icon-header-01.png" className="header-icon1" alt="ICON" />
 								</a>
 
 								<span className="linedivide2" />
 
 								<div className="header-wrapicon2">
-									<img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" />
+									<img src="./images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" />
 									<span className="header-icons-noti">0</span>
 
 									{/* <!-- Header cart noti --> */}
@@ -231,7 +249,7 @@ class App extends React.Component {
 										<ul className="header-cart-wrapitem">
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="images/item-cart-01.jpg" alt="IMG" />
+													<img src="./images/item-cart-01.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -245,7 +263,7 @@ class App extends React.Component {
 
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="images/item-cart-02.jpg" alt="IMG" />
+													<img src="./images/item-cart-02.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -259,7 +277,7 @@ class App extends React.Component {
 
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="images/item-cart-03.jpg" alt="IMG" />
+													<img src="./images/item-cart-03.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -515,13 +533,13 @@ class App extends React.Component {
 										</div>
 
 										<div className="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-											<select className="selection-2" name="sorting">
+											<select className="selection-2" name="sorting" onChange={this.handlePriceDropdown}>
 												<option>Price</option>
-												<option>$0.00 - $50.00</option>
-												<option>$50.00 - $100.00</option>
-												<option>$100.00 - $150.00</option>
-												<option>$150.00 - $200.00</option>
-												<option>$200.00+</option>
+												<option value={0}>$0.00 - $50.00</option>
+												<option value={50}>$50.00 - $100.00</option>
+												<option value={100}>$100.00 - $150.00</option>
+												<option value={150}>$150.00 - $200.00</option>
+												<option value={200}>$200.00+</option>
 											</select>
 										</div>
 									</div>
@@ -531,357 +549,40 @@ class App extends React.Component {
 
 								{/* <!-- Product --> */}
 								<div className="row">
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-												<img src="images/item-02.jpg" alt="IMG-PRODUCT" />
+									{productsAll.map(product => (
+										<div className="col-sm-12 col-md-6 col-lg-4 p-b-50" key={product._id}>
+											{/* <!-- Block2 --> */}
+											<div className="block2">
+												<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+													<img src={product.image} alt="IMG-PRODUCT" />
 
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
+													<div className="block2-overlay trans-0-4">
+														<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
+															<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
+															<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
+														</a>
 
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
+														<div className="block2-btn-addcart w-size1 trans-0-4">
+															{/* <!-- Button --> */}
+															<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+																Add to Cart
+															</button>
+														</div>
 													</div>
 												</div>
-											</div>
 
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Herschel supply co 25l
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$75.00</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative">
-												<img src="images/item-03.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
+												<div className="block2-txt p-t-20">
+													<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
+														{product.name}
 													</a>
 
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
+													<span className="block2-price m-text6 p-r-5">{product.price}</span>
+
+													{/* <span className="block2-newprice m-text8 p-r-5">$15.90</span> */}
 												</div>
 											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Denim jacket blue
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$92.50</span>
-											</div>
 										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative">
-												<img src="images/item-05.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Coach slim easton black
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$165.90</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-												<img src="images/item-07.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Frayed denim shorts
-												</a>
-
-												<span className="block2-oldprice m-text7 p-r-5">$29.50</span>
-
-												<span className="block2-newprice m-text8 p-r-5">$15.90</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-												<img src="images/item-01.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Herschel supply co 25l
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$75.00</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative">
-												<img src="images/item-14.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Denim jacket blue
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$92.50</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-												<img src="images/item-06.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Herschel supply co 25l
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$75.00</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative">
-												<img src="images/item-08.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Denim jacket blue
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$92.50</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative">
-												<img src="images/item-10.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Coach slim easton black
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$165.90</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-												<img src="images/item-11.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Frayed denim shorts
-												</a>
-
-												<span className="block2-oldprice m-text7 p-r-5">$29.50</span>
-
-												<span className="block2-newprice m-text8 p-r-5">$15.90</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-												<img src="images/item-12.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Herschel supply co 25l
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$75.00</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-sm-12 col-md-6 col-lg-4 p-b-50">
-										{/* <!-- Block2 --> */}
-										<div className="block2">
-											<div className="block2-img wrap-pic-w of-hidden pos-relative">
-												<img src="images/item-15.jpg" alt="IMG-PRODUCT" />
-
-												<div className="block2-overlay trans-0-4">
-													<a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i className="icon-wishlist icon_heart_alt" aria-hidden="true" />
-														<i className="icon-wishlist icon_heart dis-none" aria-hidden="true" />
-													</a>
-
-													<div className="block2-btn-addcart w-size1 trans-0-4">
-														{/* <!-- Button --> */}
-														<button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>
-													</div>
-												</div>
-											</div>
-
-											<div className="block2-txt p-t-20">
-												<a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-													Denim jacket blue
-												</a>
-
-												<span className="block2-price m-text6 p-r-5">$92.50</span>
-											</div>
-										</div>
-									</div>
+									))}
 								</div>
 
 								{/* <!-- Pagination -->  */}
@@ -1028,23 +729,23 @@ class App extends React.Component {
 
 					<div className="t-center p-l-15 p-r-15">
 						<a href="#">
-							<img className="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL" />
+							<img className="h-size2" src="./images/icons/paypal.png" alt="IMG-PAYPAL" />
 						</a>
 
 						<a href="#">
-							<img className="h-size2" src="images/icons/visa.png" alt="IMG-VISA" />
+							<img className="h-size2" src="./images/icons/visa.png" alt="IMG-VISA" />
 						</a>
 
 						<a href="#">
-							<img className="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD" />
+							<img className="h-size2" src="./images/icons/mastercard.png" alt="IMG-MASTERCARD" />
 						</a>
 
 						<a href="#">
-							<img className="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS" />
+							<img className="h-size2" src="./images/icons/express.png" alt="IMG-EXPRESS" />
 						</a>
 
 						<a href="#">
-							<img className="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER" />
+							<img className="h-size2" src="./images/icons/discover.png" alt="IMG-DISCOVER" />
 						</a>
 
 						<div className="t-center s-text8 p-t-20">
