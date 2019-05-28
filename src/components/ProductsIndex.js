@@ -65,12 +65,17 @@ class ProductsIndex extends React.Component {
 		}
 	};
 
-	handleSearchTerm = searchTerm => {
-		console.log('searchTerm: ', searchTerm);
+	onSearchTermChanged = e => {
+		const searchTerm = e.target.value;
+		const { productsAll } = this.state;
+
+		const searchResults = productsAll.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+		this.setState({ productsDisplayed: searchResults, countDisplayed: searchResults.length });
 	};
 
 	render() {
-		const { productsDisplayed } = this.state;
+		const { productsDisplayed, countDisplayed } = this.state;
 		return (
 			<>
 				<header className="header1">
@@ -555,7 +560,9 @@ class ProductsIndex extends React.Component {
 										</div>
 									</div>
 
-									<span className="s-text8 p-t-5 p-b-5">Showing 1–{this.state.countDisplayed} of {this.state.countDisplayed} results</span>
+									<span className="s-text8 p-t-5 p-b-5">
+										Showing 1–{countDisplayed} of {countDisplayed} results
+									</span>
 								</div>
 
 								{/* <!-- Product --> */}
@@ -781,6 +788,6 @@ class ProductsIndex extends React.Component {
 			</>
 		);
 	}
-};
+}
 
 export default ProductsIndex;

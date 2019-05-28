@@ -11,18 +11,9 @@ import '../css/util.css';
 import '../vendor/bootstrap/css/bootstrap.min.css';
 
 class ProductDetail extends React.Component {
-	// state = {
-	// 	product: {},
-	// };
-
-	// eslint-disable-next-line react/sort-comp
-	// product: null;
-	constructor(props) {
-		super(props);
-		this.state = {
-			product: "",
-		};
-	}
+	state = {
+		product: '',
+	};
 
 	async componentDidMount() {
 		const { id } = this.props.match.params;
@@ -34,38 +25,13 @@ class ProductDetail extends React.Component {
 				},
 			});
 			const resultJSON = await result.json();
-			console.log('resultJSON: ', resultJSON);
 			this.setState({ product: resultJSON });
-			// this.product = resultJSON;
 		} catch (error) {
 			console.log('error', error);
 		}
 	}
-	// componentDidMount() {
-	// 	this.getResults();
-	// }
-
-	// getResults = async () => {
-	// 	const { id } = this.props.match.params;
-	// 	try {
-	// 		const result = await fetch(`http://localhost:8080/product-detail/${id}`, {
-	// 			method: 'GET',
-	// 			headers: {
-	// 				'Content-Type': 'application/x-www-form-urlencoded',
-	// 			},
-	// 		});
-	// 		const resultJSON = await result.json();
-	// 		console.log('resultJSON: ', resultJSON);
-	// 		this.setState(() => { product: resultJSON });
-	// 		// this.product = resultJSON;
-	// 	} catch (error) {
-	// 		console.log('error', error);
-	// 	}
-	// };
 
 	render() {
-		// const { product } = this.state;
-		// console.log('product: ', product);
 		return (
 			<>
 				{/* <!-- Header --> */}

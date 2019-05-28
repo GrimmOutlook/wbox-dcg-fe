@@ -97,7 +97,7 @@ const Product = ({ product }) => (
 					<span className="s-text8">
 						Categories:{' '}
 						{product.tags.map(tag => (
-							<span>{tag} </span>
+							<span key={tag}>{tag} </span>
 						))}
 					</span>
 				</div>
