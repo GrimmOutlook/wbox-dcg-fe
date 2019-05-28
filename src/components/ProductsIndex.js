@@ -160,13 +160,13 @@ class ProductsIndex extends React.Component {
 							{/* <!-- Header Icon --> */}
 							<div className="header-icons">
 								<a href="#" className="header-wrapicon1 dis-block">
-									<img src="./images/icons/icon-header-01.png" className="header-icon1" alt="ICON" />
+									<img src="/images/icons/icon-header-01.png" className="header-icon1" alt="ICON" />
 								</a>
 
 								<span className="linedivide1" />
 
 								<div className="header-wrapicon2">
-									<img src="./images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" />
+									<img src="/images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" />
 									<span className="header-icons-noti">0</span>
 
 									{/* <!-- Header cart noti --> */}
@@ -174,7 +174,7 @@ class ProductsIndex extends React.Component {
 										<ul className="header-cart-wrapitem">
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="./images/item-cart-01.jpg" alt="IMG" />
+													<img src="/images/item-cart-01.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -188,7 +188,7 @@ class ProductsIndex extends React.Component {
 
 											<li className="header-cart-item">
 												<div className="header-cart-item-img">
-													<img src="./images/item-cart-02.jpg" alt="IMG" />
+													<img src="/images/item-cart-02.jpg" alt="IMG" />
 												</div>
 
 												<div className="header-cart-item-txt">
@@ -594,7 +594,7 @@ class ProductsIndex extends React.Component {
 														{product.name}
 													</Link>
 
-													<span className="block2-price m-text6 p-r-5">{product.price}</span>
+													<span className="block2-price m-text6 p-r-5">${product.price}</span>
 
 													{/* <span className="block2-newprice m-text8 p-r-5">$15.90</span> */}
 												</div>
